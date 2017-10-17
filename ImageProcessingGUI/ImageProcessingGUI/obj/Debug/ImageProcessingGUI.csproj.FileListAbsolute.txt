@@ -1,0 +1,15 @@
+C:\Users\ahmed\source\repos\ImageProcessingGUI\ImageProcessingGUI\bin\Debug\ImageProcessingGUI.exe.config
+C:\Users\ahmed\source\repos\ImageProcessingGUI\ImageProcessingGUI\bin\Debug\ImageProcessingGUI.exe
+C:\Users\ahmed\source\repos\ImageProcessingGUI\ImageProcessingGUI\bin\Debug\ImageProcessingGUI.pdb
+C:\Users\ahmed\source\repos\ImageProcessingGUI\ImageProcessingGUI\obj\Debug\ImageProcessingGUI.csprojResolveAssemblyReference.cache
+C:\Users\ahmed\source\repos\ImageProcessingGUI\ImageProcessingGUI\obj\Debug\MainWindow.g.cs
+C:\Users\ahmed\source\repos\ImageProcessingGUI\ImageProcessingGUI\obj\Debug\App.g.cs
+C:\Users\ahmed\source\repos\ImageProcessingGUI\ImageProcessingGUI\obj\Debug\ImageProcessingGUI_MarkupCompile.cache
+C:\Users\ahmed\source\repos\ImageProcessingGUI\ImageProcessingGUI\obj\Debug\ImageProcessingGUI_MarkupCompile.lref
+C:\Users\ahmed\source\repos\ImageProcessingGUI\ImageProcessingGUI\obj\Debug\MainWindow.baml
+C:\Users\ahmed\source\repos\ImageProcessingGUI\ImageProcessingGUI\obj\Debug\ImageProcessingGUI.g.resources
+C:\Users\ahmed\source\repos\ImageProcessingGUI\ImageProcessingGUI\obj\Debug\ImageProcessingGUI.Properties.Resources.resources
+C:\Users\ahmed\source\repos\ImageProcessingGUI\ImageProcessingGUI\obj\Debug\ImageProcessingGUI.csproj.GenerateResource.Cache
+C:\Users\ahmed\source\repos\ImageProcessingGUI\ImageProcessingGUI\obj\Debug\ImageProcessingGUI.csproj.CoreCompileInputs.cache
+C:\Users\ahmed\source\repos\ImageProcessingGUI\ImageProcessingGUI\obj\Debug\ImageProcessingGUI.exe
+C:\Users\ahmed\source\repos\ImageProcessingGUI\ImageProcessingGUI\obj\Debug\ImageProcessingGUI.pdb
