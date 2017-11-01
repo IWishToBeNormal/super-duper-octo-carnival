@@ -17,7 +17,7 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        string bilde = "C:/temp/temp1.jpg";
+        string bilde = "C:/temp/temp2.jpg";
         public Form1()
         {
             InitializeComponent();
@@ -41,15 +41,40 @@ namespace WindowsFormsApp1
             MessageBox.Show(red.Median.ToString() + "\n" + blue.Median.ToString() + "\n" + green.Median.ToString());
 
 
+
+
+
+            BlobCounter blobCounter = new BlobCounter();
+            blobCounter.ProcessImage(bitmap);
+            Blob[] blobs = blobCounter.GetObjectsInformation();
+            List<IntPoint> edgePoints = new List<IntPoint>();
+            List<IntPoint> corners = new List<IntPoint>();
+            for (int i = 0, n = blobs.Length; i < n; i++)
+            {
+                edgePoints = blobCounter.GetBlobsEdgePoints(blobs[i]);
+                
+            }
+            corners = PointsCloud.FindQuadrilateralCorners(edgePoints);
+            /*
             // create filter
-            ColorFiltering filter = new ColorFiltering();
+            ColorFiltering filter1 = new ColorFiltering();
             // set color ranges to keep
-            filter.Red = new IntRange(200, 255);
-            filter.Green = new IntRange(200, 255);
-            filter.Blue = new IntRange(200, 255);
+            filter1.Red = new IntRange(150, 255);
+            filter1.Green = new IntRange(150, 255);
+            filter1.Blue = new IntRange(150, 255);
             // apply the filter
-            filter.ApplyInPlace(bitmap);
+            filter1.ApplyInPlace(bitmap);
             PB1.Image = bitmap;
+            */
+            MessageBox.Show(corners.Count.ToString());
+            SimpleQuadrilateralTransformation filter2 = new SimpleQuadrilateralTransformation(corners);
+            // apply the filter
+            
+
+
+            PB1.Image = filter2.Apply(bitmap);
+
+           
         }
         private System.Drawing.Point[] ToPointsArray(List<IntPoint> points)
         {
