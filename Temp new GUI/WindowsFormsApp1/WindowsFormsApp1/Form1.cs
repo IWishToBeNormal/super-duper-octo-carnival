@@ -17,7 +17,7 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        string bilde = "C:/temp/temp3.jpg";
+        string bilde = @"C:\Users\Muhammed\Pictures\blokk.jpg";
         public Form1()
         {
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace WindowsFormsApp1
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             PB1.Image = System.Drawing.Image.FromFile(bilde);
             Bitmap bitmap = new Bitmap(bilde);
@@ -46,9 +46,9 @@ namespace WindowsFormsApp1
             Histogram blue = stat.Blue;
             Histogram green = stat.Green;
             Histogram gray = stat2.Gray;
-            MessageBox.Show(red.Mean.ToString() + "\n" + blue.Mean.ToString() + "\n" + green.Mean.ToString() + "\n" + gray.Mean.ToString());
-            MessageBox.Show(red.Median.ToString() + "\n" + blue.Median.ToString() + "\n" + green.Median.ToString() + "\n" + gray.Median.ToString());
-            MessageBox.Show(gray.Max.ToString() + "\n" + gray.Min.ToString());//bruk disse pluss gray.Median for å sjekke feil
+            MessageBox.Show(red.Mean.ToString() + " Red Mean" + "\n" + blue.Mean.ToString() + " Blue Mean" + "\n" + green.Mean.ToString() + " Green Mean" + "\n" + gray.Mean.ToString() + " Gray Mean");
+            MessageBox.Show(red.Median.ToString() + " Red Median" + "\n" + blue.Median.ToString() + " Blue Median" + "\n" + green.Median.ToString() + " Green Median" + "\n" + gray.Median.ToString() + " Gray Median");
+            MessageBox.Show(gray.Max.ToString() + " Gray Max" + "\n" + gray.Min.ToString() + " Gray Min" );//bruk disse pluss gray.Median for å sjekke feil
             //må sjekkes med ordentlig bilde og shit
 
 
@@ -65,7 +65,7 @@ namespace WindowsFormsApp1
                 
             }
             corners = PointsCloud.FindQuadrilateralCorners(edgePoints);
-            MessageBox.Show(corners.Count.ToString());
+            MessageBox.Show(corners.Count.ToString() + " Total corners found");
 
 
             //croper bildet etter hvilke kanter den finner
