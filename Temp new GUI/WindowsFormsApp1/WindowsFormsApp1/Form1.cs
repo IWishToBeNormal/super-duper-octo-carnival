@@ -17,7 +17,7 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        string bilde = @"C:\Users\Muhammed\Pictures\blokk.jpg";
+        string bilde = @"C:\temp\temp2.jpg";
         public Form1()
         {
             InitializeComponent();
@@ -49,29 +49,41 @@ namespace WindowsFormsApp1
             MessageBox.Show(red.Mean.ToString() + " Red Mean" + "\n" + blue.Mean.ToString() + " Blue Mean" + "\n" + green.Mean.ToString() + " Green Mean" + "\n" + gray.Mean.ToString() + " Gray Mean");
             MessageBox.Show(red.Median.ToString() + " Red Median" + "\n" + blue.Median.ToString() + " Blue Median" + "\n" + green.Median.ToString() + " Green Median" + "\n" + gray.Median.ToString() + " Gray Median");
             MessageBox.Show(gray.Max.ToString() + " Gray Max" + "\n" + gray.Min.ToString() + " Gray Min" );//bruk disse pluss gray.Median for å sjekke feil
-            //må sjekkes med ordentlig bilde og shit
+                                                                                                           //må sjekkes med ordentlig bilde og shit
 
+            ColorFiltering colorFilter = new ColorFiltering();
+
+            colorFilter.Red = new IntRange(0, 64);
+            colorFilter.Green = new IntRange(0, 64);
+            colorFilter.Blue = new IntRange(0, 30);
+            colorFilter.FillOutsideRange = false;
+
+            colorFilter.ApplyInPlace(bitmap);
+            PB1.Image = bitmap;
 
 
             //finner firkant, funker ikke helt som vi vil
+            // locate objects using blob counter
             BlobCounter blobCounter = new BlobCounter();
             blobCounter.ProcessImage(bitmap);
             Blob[] blobs = blobCounter.GetObjectsInformation();
-            List<IntPoint> edgePoints = new List<IntPoint>();
             List<IntPoint> corners = new List<IntPoint>();
+
             for (int i = 0, n = blobs.Length; i < n; i++)
             {
-                edgePoints = blobCounter.GetBlobsEdgePoints(blobs[i]);
-                
+                List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blobs[i]);
+                corners = PointsCloud.FindQuadrilateralCorners(edgePoints);
             }
-            corners = PointsCloud.FindQuadrilateralCorners(edgePoints);
-            MessageBox.Show(corners.Count.ToString() + " Total corners found");
+            MessageBox.Show(corners.Count.ToString());
+
 
 
             //croper bildet etter hvilke kanter den finner
             SimpleQuadrilateralTransformation filter2 = new SimpleQuadrilateralTransformation(corners);
             PB1.Image = filter2.Apply(bitmap);
         }
+
+
         private System.Drawing.Point[] ToPointsArray(List<IntPoint> points)
         {
             System.Drawing.Point[] array = new System.Drawing.Point[points.Count];

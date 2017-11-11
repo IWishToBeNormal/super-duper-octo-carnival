@@ -35,7 +35,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(525, 834);
+            this.button1.Location = new System.Drawing.Point(299, 462);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -47,7 +47,7 @@
             // 
             this.PB1.Location = new System.Drawing.Point(12, 12);
             this.PB1.Name = "PB1";
-            this.PB1.Size = new System.Drawing.Size(1141, 816);
+            this.PB1.Size = new System.Drawing.Size(664, 444);
             this.PB1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PB1.TabIndex = 1;
             this.PB1.TabStop = false;
@@ -56,7 +56,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1165, 869);
+            this.ClientSize = new System.Drawing.Size(683, 503);
             this.Controls.Add(this.PB1);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
