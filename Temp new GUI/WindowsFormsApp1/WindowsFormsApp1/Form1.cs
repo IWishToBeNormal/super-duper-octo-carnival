@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using AForge;
 using AForge.Imaging;
-using AForge.Math;
-using AForge;
-using AForge.Math.Geometry;
 using AForge.Imaging.Filters;
+using AForge.Math;
+using AForge.Math.Geometry;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        string bilde = @"C:\temp\temp2.jpg";
+        string bilde = @"C:\temp\temp7.jpg";
         public Form1()
         {
             InitializeComponent();
@@ -48,11 +43,13 @@ namespace WindowsFormsApp1
             Histogram gray = stat2.Gray;
             MessageBox.Show(red.Mean.ToString() + " Red Mean" + "\n" + blue.Mean.ToString() + " Blue Mean" + "\n" + green.Mean.ToString() + " Green Mean" + "\n" + gray.Mean.ToString() + " Gray Mean");
             MessageBox.Show(red.Median.ToString() + " Red Median" + "\n" + blue.Median.ToString() + " Blue Median" + "\n" + green.Median.ToString() + " Green Median" + "\n" + gray.Median.ToString() + " Gray Median");
-            MessageBox.Show(gray.Max.ToString() + " Gray Max" + "\n" + gray.Min.ToString() + " Gray Min" );//bruk disse pluss gray.Median for å sjekke feil
-                                                                                                           //må sjekkes med ordentlig bilde og shit
+            MessageBox.Show(gray.Max.ToString() + " Gray Max" + "\n" + gray.Min.ToString() + " Gray Min" );
+            //bruk disse pluss gray.Median for å sjekke feil
+            //må sjekkes med ordentlig bilde og shit
+
+
 
             ColorFiltering colorFilter = new ColorFiltering();
-
             colorFilter.Red = new IntRange(0, 64);
             colorFilter.Green = new IntRange(0, 64);
             colorFilter.Blue = new IntRange(0, 30);
@@ -65,6 +62,11 @@ namespace WindowsFormsApp1
             //finner firkant, funker ikke helt som vi vil
             // locate objects using blob counter
             BlobCounter blobCounter = new BlobCounter();
+
+            blobCounter.FilterBlobs = true;
+            blobCounter.MinHeight = bitmap.Height /2;
+            blobCounter.MinWidth = bitmap.Width /2;
+
             blobCounter.ProcessImage(bitmap);
             Blob[] blobs = blobCounter.GetObjectsInformation();
             List<IntPoint> corners = new List<IntPoint>();
@@ -72,15 +74,26 @@ namespace WindowsFormsApp1
             for (int i = 0, n = blobs.Length; i < n; i++)
             {
                 List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blobs[i]);
-                corners = PointsCloud.FindQuadrilateralCorners(edgePoints);
+                if (corners.Count < 4)
+                {
+                    corners = PointsCloud.FindQuadrilateralCorners(edgePoints);
+                }
+                else
+                {
+                    break;
+                }
             }
             MessageBox.Show(corners.Count.ToString());
 
 
+            if(corners.Count == 4)
+            {
+                //croper bildet etter hvilke kanter den finner
+                SimpleQuadrilateralTransformation filter2 = new SimpleQuadrilateralTransformation(corners);
+                PB1.Image = filter2.Apply(bitmap);
+                MessageBox.Show("temp");
+            }
 
-            //croper bildet etter hvilke kanter den finner
-            SimpleQuadrilateralTransformation filter2 = new SimpleQuadrilateralTransformation(corners);
-            PB1.Image = filter2.Apply(bitmap);
         }
 
 
