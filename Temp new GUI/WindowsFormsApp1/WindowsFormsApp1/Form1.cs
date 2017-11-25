@@ -12,7 +12,7 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        string bilde = @"C:\temp\temp17.jpg";
+        string bilde = @"C:\Users\ahmed\Pictures\temp.jpg";
         public Form1()
         {
             InitializeComponent();
@@ -38,7 +38,7 @@ namespace WindowsFormsApp1
             PB1.Image = bitmap;
 
 
-            //finner firkant, funker ikke helt som vi vil
+           
             // locate objects using blob counter
             BlobCounter blobCounter = new BlobCounter();
 
@@ -63,7 +63,7 @@ namespace WindowsFormsApp1
                     break;
                 }
             }
-            MessageBox.Show(corners.Count.ToString());
+            CornersTB.Text = corners.Count.ToString();
 
 
             if(corners.Count == 4)
@@ -110,15 +110,15 @@ namespace WindowsFormsApp1
             {
                 temp += gray.Values[i];
             }
-            MessageBox.Show(temp.ToString() + " verdier under " + Convert.ToString(Gmean / 2));
+            MessageBox.Show(temp.ToString() + " sorte piksel verdier under " + Convert.ToString(Gmean / 2));
 
             if (temp > 3)
             {
-                MessageBox.Show("det er feil!!!!");
+                MessageBox.Show("Feil er detektert");
             }
             else
             {
-                MessageBox.Show("riktig!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                MessageBox.Show("Platen har ingen feil");
             }
         }
     }
